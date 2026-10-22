@@ -1,0 +1,1414 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI Master Academy | Learn AI by Building Real Things</title>
+<meta name="description" content="Practical, project-based AI courses: prompting, automations and AI agents. Learn with a working AI educator and ship real projects.">
+<meta name="theme-color" content="#FAFAFF">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-zXa9bhSldAcX6R1RVFCXnGK1M1Kok3yEqjEAyh3GNcU=' 'sha256-D14QpVrAsy8xsIvibDG4kdbf1dN1Z1kY2KLOssYNwPI=' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src https:; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AI Master Academy | Learn AI by Building Real Things">
+<meta property="og:description" content="Practical, project-based AI courses: prompting, automations and AI agents.">
+<link rel="canonical" href="https://example.com/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Sora:wght@600;700&display=swap">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%234F46E5'/%3E%3Cpath d='M16 6l2.2 6 6 2.2-6 2.2L16 22.4l-2.2-6-6-2.2 6-2.2z' fill='white'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#FAFAFF;--bg-2:#F2F3FF;--surface:#FFFFFF;--surface-2:#F7F8FF;
+  --ink:#0F1226;--ink-2:#464B67;--ink-3:#5F6485;
+  --accent:#4F46E5;--accent-hi:#6366F1;--accent-deep:#3730A3;--accent-soft:rgba(79,70,229,.1);--accent-ink:#FFFFFF;
+  --violet:#7C3AED;--cyan:#06B6D4;
+  --ok:#047857;--err:#DC2626;--wa:#0E7C6B;
+  --line:rgba(15,18,38,.08);--line-2:rgba(15,18,38,.16);
+  --shadow:0 30px 60px -28px rgba(37,32,120,.38);--shadow-sm:0 12px 26px -16px rgba(37,32,120,.3);
+  --radius:16px;--radius-lg:28px;--max:1200px;--gutter:clamp(16px,4vw,32px);--nav-h:72px;
+  --font-display:"Sora",system-ui,sans-serif;--font-body:"DM Sans",system-ui,sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--nav-h) + 12px)}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--font-body);-webkit-font-smoothing:antialiased;overflow-x:clip}
+img,svg,canvas{display:block;max-width:100%}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:0;padding:0}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:var(--font-display);margin:0;line-height:1.1;letter-spacing:-.02em}
+p{margin:0}
+ul,ol{margin:0;padding:0;list-style:none}
+:focus-visible{outline:3px solid var(--accent-hi);outline-offset:3px;border-radius:6px}
+.num{font-variant-numeric:tabular-nums}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.wrap{width:min(100% - var(--gutter)*2,var(--max));margin-inline:auto}
+.skip{position:fixed;left:16px;top:-80px;z-index:200;background:var(--ink);color:var(--surface);padding:12px 18px;border-radius:10px;font-weight:600;transition:top .2s}
+.skip:focus{top:16px}
+.ic{width:1.15em;height:1.15em;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:90;background:linear-gradient(90deg,var(--accent),var(--violet),var(--cyan));transform-origin:0 50%;transform:scaleX(var(--sp,0));pointer-events:none}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 24px;border-radius:999px;font:600 .98rem var(--font-display);border:1px solid transparent;transition:transform .3s var(--ease),background .25s,box-shadow .3s,border-color .25s;white-space:nowrap}
+.btn:active{transform:scale(.97)}
+.btn[disabled]{opacity:.65;cursor:not-allowed}
+.btn-sm{min-height:44px;padding:0 18px;font-size:.9rem}
+.btn-primary{background:var(--accent);color:var(--accent-ink);box-shadow:0 14px 28px -14px var(--accent)}
+.btn-primary:hover{background:var(--accent-deep);transform:translateY(-2px)}
+.btn-ghost{background:var(--surface);color:var(--ink);border-color:var(--line-2)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent-deep);transform:translateY(-2px)}
+.btn-wa{background:var(--wa);color:var(--accent-ink)}
+.btn-wa:hover{transform:translateY(-2px);box-shadow:0 14px 28px -16px var(--wa)}
+.btn .ic{transition:transform .3s var(--ease)}
+.btn:hover .ic-go{transform:translateX(4px)}
+
+.nav{position:fixed;inset:0 0 auto 0;z-index:80;height:var(--nav-h);display:flex;align-items:center;transition:background .3s,box-shadow .3s,backdrop-filter .3s}
+.nav.solid{background:color-mix(in srgb,var(--bg) 84%,transparent);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 1px 0 var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{display:inline-flex;align-items:center;gap:10px;font:700 1.15rem var(--font-display);letter-spacing:-.02em;min-height:44px}
+.logo-mark{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),var(--violet));color:var(--accent-ink);box-shadow:0 8px 18px -8px var(--accent)}
+.nav-links{display:flex;gap:6px}
+.nav-links a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border-radius:999px;font-weight:500;color:var(--ink-2);transition:color .2s,background .2s}
+.nav-links a:hover{color:var(--ink);background:var(--accent-soft)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.burger{display:none;width:44px;height:44px;border-radius:12px;place-items:center;border:1px solid var(--line-2);background:var(--surface)}
+.mnav{position:fixed;inset:var(--nav-h) 0 auto 0;z-index:79;padding:12px var(--gutter) 24px;background:var(--surface);border-bottom:1px solid var(--line);box-shadow:var(--shadow);display:grid;gap:4px;animation:drop .3s var(--ease)}
+.mnav[hidden]{display:none}
+.mnav a{display:flex;align-items:center;min-height:48px;padding:0 8px;font:600 1.05rem var(--font-display);border-bottom:1px solid var(--line)}
+.mnav .btn{margin-top:14px;border:0}
+@keyframes drop{from{opacity:0;transform:translateY(-10px)}}
+
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;padding:calc(var(--nav-h) + 24px) 0 72px;overflow:hidden;isolation:isolate}
+.hero-bg{position:absolute;inset:0;z-index:-4;background:radial-gradient(55% 60% at 80% 28%,var(--accent-soft),transparent 72%),radial-gradient(40% 45% at 95% 85%,color-mix(in srgb,var(--cyan) 14%,transparent),transparent 70%),radial-gradient(35% 40% at 5% 95%,color-mix(in srgb,var(--violet) 10%,transparent),transparent 70%)}
+.hero-dots{position:absolute;inset:0;z-index:-3;background-image:radial-gradient(var(--line-2) 1px,transparent 1.5px);background-size:30px 30px;-webkit-mask-image:radial-gradient(70% 75% at 72% 40%,black,transparent);mask-image:radial-gradient(70% 75% at 72% 40%,black,transparent)}
+#field{position:absolute;inset:0;width:100%;height:100%;z-index:-2;opacity:0;transition:opacity 1.4s ease}
+.field-on #field{opacity:1}
+.hero-scrim{position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,var(--bg) 0%,color-mix(in srgb,var(--bg) 78%,transparent) 34%,transparent 66%);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:48px;align-items:center}
+.pill{display:inline-flex;align-items:center;gap:10px;min-height:36px;padding:0 16px 0 12px;border-radius:999px;background:var(--surface);border:1px solid var(--line-2);font:600 .88rem var(--font-body);color:var(--ink-2);box-shadow:var(--shadow-sm)}
+.pill .dot{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 0 var(--ok);animation:ping 2.2s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 9px transparent}100%{box-shadow:0 0 0 0 transparent}}
+.h1{font-size:clamp(2.55rem,6.1vw,5.3rem);font-weight:700;line-height:1.03;letter-spacing:-.04em;margin:22px 0 22px}
+.h1 .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.14em;margin-bottom:-.14em}
+.h1 .w>span{display:inline-block;transform:translateY(108%);animation:rise 1s var(--ease) forwards;animation-delay:calc(var(--i)*80ms + 120ms)}
+@keyframes rise{to{transform:none}}
+.grad{background:linear-gradient(100deg,var(--accent),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-sub{font-size:clamp(1.05rem,1.6vw,1.25rem);color:var(--ink-2);max-width:54ch}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.facts{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:30px;color:var(--ink-2);font-weight:500;font-size:.95rem}
+.facts li{display:inline-flex;align-items:center;gap:8px}
+.facts .ic{color:var(--ok)}
+
+.stage{perspective:1400px;display:grid;place-items:center;min-height:460px}
+.deck{position:relative;width:min(100%,470px);aspect-ratio:1/1.04;transform-style:preserve-3d;transform:rotateX(var(--rx,6deg)) rotateY(var(--ry,-14deg));transition:transform .3s ease-out}
+.dcard{position:absolute;border-radius:var(--radius-lg);background:color-mix(in srgb,var(--surface) 86%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);box-shadow:var(--shadow)}
+.dc-main{inset:2% 0 16% 0;padding:20px;transform:translateZ(0);animation:bob 7s ease-in-out infinite}
+.dc-flow{right:-5%;bottom:0;width:60%;padding:14px 16px;transform:translateZ(80px);animation:bob 6s ease-in-out -2s infinite}
+.dc-chip{left:-7%;top:40%;display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;font:600 .88rem var(--font-body);transform:translateZ(120px);animation:bob 5.5s ease-in-out -1s infinite}
+.dc-chip .ic{color:var(--violet)}
+.dc-chip2{right:6%;top:-5%;display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;font:600 .88rem var(--font-body);transform:translateZ(60px);animation:bob 6.5s ease-in-out -3s infinite}
+.dc-chip2 .ic{color:var(--ok)}
+@keyframes bob{50%{translate:0 -12px}}
+.win-dots{display:flex;gap:6px;margin-bottom:16px}
+.win-dots i{width:10px;height:10px;border-radius:50%;background:var(--line-2)}
+.win-dots i:nth-child(1){background:var(--err)}
+.win-dots i:nth-child(2){background:var(--cyan)}
+.win-dots i:nth-child(3){background:var(--ok)}
+.bubble{padding:14px 16px;border-radius:16px 16px 4px 16px;background:var(--accent);color:var(--accent-ink);font-size:.94rem;min-height:3.4em;margin-left:14%}
+.caret{display:inline-block;width:2px;height:1em;background:currentColor;vertical-align:-.15em;margin-left:2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.reply{margin-top:14px;padding:14px 16px;border-radius:16px 16px 16px 4px;background:var(--surface-2);border:1px solid var(--line);margin-right:10%;display:grid;gap:8px;min-height:7.2em}
+.reply .ln{display:flex;gap:8px;align-items:flex-start;font-size:.9rem;color:var(--ink-2);opacity:0;transform:translateY(6px);animation:lnin .5s var(--ease) forwards;animation-delay:calc(var(--k)*180ms)}
+.reply .ln .ic{color:var(--ok);margin-top:.2em}
+@keyframes lnin{to{opacity:1;transform:none}}
+.flow-title{font:600 .78rem var(--font-body);color:var(--ink-3);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.flow-svg{width:100%;height:auto}
+.flow-line{stroke:var(--accent-hi);stroke-width:2;fill:none;stroke-dasharray:5 6;animation:dash 1.4s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-22}}
+.flow-node{fill:var(--surface);stroke:var(--accent);stroke-width:2}
+.flow-node.hot{fill:var(--accent)}
+
+.marquee{overflow:hidden;border-block:1px solid var(--line);background:var(--surface);padding:18px 0}
+.marquee-label{text-align:center;font:600 .78rem var(--font-body);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:14px}
+.track{display:flex;width:max-content;animation:slide 38s linear infinite}
+.track:hover{animation-play-state:paused}
+.track ul{display:flex;gap:12px;padding-right:12px}
+.track li{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 20px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line);font:600 .95rem var(--font-display);color:var(--ink-2)}
+.track li .ic{color:var(--accent)}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+.section{padding:clamp(72px,10vw,140px) 0}
+.alt{background:var(--bg-2)}
+.sec-head{max-width:720px;margin-bottom:clamp(32px,5vw,56px)}
+.eyebrow{display:inline-flex;align-items:center;gap:12px;font:700 .78rem/1 var(--font-display);letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+.eyebrow::before{content:"";width:28px;height:2px;border-radius:2px;background:currentColor}
+.h2{font-size:clamp(2rem,4.6vw,3.6rem);font-weight:700;letter-spacing:-.035em;margin:16px 0 14px}
+.lead{color:var(--ink-2);font-size:clamp(1.02rem,1.5vw,1.2rem);max-width:60ch}
+
+.rv{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0ms)}
+.rv.in{opacity:1;transform:none}
+
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.chip-btn{min-height:44px;padding:0 20px;border-radius:999px;border:1px solid var(--line-2);background:var(--surface);font:600 .92rem var(--font-body);transition:background .2s,color .2s,border-color .2s,transform .2s}
+.chip-btn:hover{border-color:var(--accent)}
+.chip-btn[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.grid-courses{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,262px),1fr));gap:22px}
+.grid-courses>li{display:flex}
+.card{position:relative;display:flex;flex-direction:column;width:100%;border-radius:var(--radius-lg);background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow-sm);overflow:hidden;transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .4s var(--ease),box-shadow .4s,border-color .3s;will-change:transform}
+.card:hover{box-shadow:var(--shadow)}
+.card::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(260px circle at var(--mx,50%) var(--my,0%),color-mix(in srgb,var(--accent-hi) 16%,transparent),transparent 70%);opacity:0;transition:opacity .3s}
+.card:hover::after{opacity:1}
+.card.feat{border-color:color-mix(in srgb,var(--accent) 55%,transparent);box-shadow:0 0 0 1px color-mix(in srgb,var(--accent) 35%,transparent),var(--shadow)}
+.art{position:relative;aspect-ratio:16/10;overflow:hidden;color:var(--accent-ink)}
+.art.a0{background:linear-gradient(135deg,var(--accent),var(--violet))}
+.art.a1{background:linear-gradient(135deg,var(--violet),var(--accent-hi))}
+.art.a2{background:linear-gradient(135deg,var(--accent-deep),var(--cyan))}
+.art.a3{background:linear-gradient(135deg,var(--ink),var(--accent))}
+.art-no{position:absolute;right:14px;bottom:-14px;font:700 6.4rem/1 var(--font-display);letter-spacing:-.06em;opacity:.16}
+.art-shape{position:absolute;border-radius:22px;border:1px solid color-mix(in srgb,var(--accent-ink) 40%,transparent);background:color-mix(in srgb,var(--accent-ink) 14%,transparent);backdrop-filter:blur(4px);transform:rotate(var(--r,12deg));animation:bob 7s ease-in-out infinite}
+.art-shape.s1{width:84px;height:84px;left:12%;top:18%;--r:-14deg;display:grid;place-items:center;font-size:2.1rem}
+.art-shape.s2{width:56px;height:56px;left:38%;top:52%;--r:18deg;animation-delay:-2s}
+.art-shape.s3{width:110px;height:110px;right:-16px;top:-22px;--r:30deg;animation-delay:-4s}
+.art-ic{position:absolute;left:12%;top:18%;width:84px;height:84px;display:grid;place-items:center;font-size:2rem}
+.art-badge{position:absolute;left:14px;top:14px;padding:4px 12px;border-radius:999px;background:var(--surface);color:var(--ink);font:700 .74rem var(--font-body);letter-spacing:.04em;text-transform:uppercase}
+.card-body{display:flex;flex-direction:column;flex:1;padding:22px;gap:10px}
+.lvl{display:flex;align-items:center;justify-content:space-between;gap:8px;font:700 .74rem var(--font-body);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.tag-sample{padding:2px 9px;border-radius:999px;border:1px dashed var(--line-2);font:600 .68rem var(--font-body);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.card h3{font-size:1.3rem;font-weight:600}
+.card .blurb{color:var(--ink-2);font-size:.95rem;flex:1}
+.meta{display:flex;flex-wrap:wrap;gap:6px 16px;color:var(--ink-3);font-size:.88rem;font-weight:500}
+.meta li{display:inline-flex;align-items:center;gap:6px}
+.price-row{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 10px;margin-top:6px}
+.price{font:700 1.85rem/1 var(--font-display);letter-spacing:-.03em}
+.was{color:var(--ink-3);text-decoration:line-through;font-size:.95rem}
+.save{padding:2px 10px;border-radius:999px;background:color-mix(in srgb,var(--ok) 12%,transparent);color:var(--ok);font:700 .78rem var(--font-body)}
+.card-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.card-actions .btn{padding:0 12px}
+.empty{padding:48px 24px;text-align:center;border:1px dashed var(--line-2);border-radius:var(--radius-lg);color:var(--ink-2);background:var(--surface)}
+.empty .btn{margin-top:16px}
+
+.overlay{position:fixed;inset:0;z-index:120;display:grid;place-items:center;padding:16px;background:color-mix(in srgb,var(--ink) 58%,transparent);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);animation:fade .25s ease}
+@keyframes fade{from{opacity:0}}
+.dialog{width:min(100%,780px);max-height:min(92svh,880px);overflow:auto;background:var(--surface);border-radius:var(--radius-lg);box-shadow:var(--shadow);animation:pop .45s var(--ease);overscroll-behavior:contain}
+@keyframes pop{from{opacity:0;transform:translateY(24px) scale(.97)}}
+.dialog:focus{outline:none}
+.dlg-head{position:sticky;top:0;z-index:2;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:24px 28px 18px;background:color-mix(in srgb,var(--surface) 94%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.dlg-head h3{font-size:clamp(1.4rem,3vw,1.9rem)}
+.x-btn{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line-2);background:var(--surface);flex:none;transition:background .2s}
+.x-btn:hover{background:var(--accent-soft)}
+.dlg-body{padding:24px 28px 8px;display:grid;gap:26px}
+.outcomes{display:grid;gap:10px}
+.outcomes li{display:flex;gap:10px;color:var(--ink-2)}
+.outcomes .ic{color:var(--ok);margin-top:.28em}
+.dlg-body h4{font-size:1.05rem;margin-bottom:12px}
+.mods{display:grid;gap:8px}
+.mods details{border:1px solid var(--line);border-radius:14px;background:var(--surface-2)}
+.mods summary{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:52px;padding:0 18px;cursor:pointer;font:600 .98rem var(--font-display);list-style:none}
+.mods summary::-webkit-details-marker{display:none}
+.mods summary .ic{transition:transform .3s var(--ease)}
+.mods details[open] summary .ic{transform:rotate(90deg)}
+.mods ul{padding:0 18px 16px 34px;display:grid;gap:6px;color:var(--ink-2);font-size:.94rem;list-style:disc}
+.dlg-foot{position:sticky;bottom:0;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;padding:18px 28px;background:var(--surface);border-top:1px solid var(--line);margin-top:18px}
+.dlg-foot .acts{display:flex;flex-wrap:wrap;gap:10px}
+
+.road-wrap{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(32px,6vw,72px);align-items:start}
+.road-wrap .sec-head{position:sticky;top:calc(var(--nav-h) + 32px);margin-bottom:0}
+.road{position:relative}
+.road-list{display:grid;gap:24px}
+.road-line{position:absolute;left:23px;top:24px;bottom:24px;width:2px;background:var(--line-2);border-radius:2px;overflow:hidden}
+.road-fill{position:absolute;inset:0;background:linear-gradient(var(--accent),var(--violet));transform-origin:top;transform:scaleY(var(--p,0))}
+.step{position:relative;display:grid;grid-template-columns:48px minmax(0,1fr);gap:20px;align-items:start}
+.step-dot{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font:700 .95rem var(--font-display);background:var(--surface);border:2px solid var(--line-2);z-index:1;transition:background .4s,color .4s,border-color .4s,box-shadow .4s}
+.step.on .step-dot{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);box-shadow:0 0 0 8px var(--accent-soft)}
+.step-card{padding:22px 24px;border-radius:var(--radius);background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow-sm);opacity:.5;transform:perspective(900px) rotateX(10deg) translateY(18px);transform-origin:50% 100%;transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.step.on .step-card{opacity:1;transform:none}
+.step-card .when{font:700 .74rem var(--font-body);letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.step-card h3{font-size:1.2rem;margin:6px 0 6px}
+.step-card p{color:var(--ink-2);font-size:.96rem}
+
+.about{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(32px,6vw,80px);align-items:center}
+.portrait{position:relative;width:min(100%,400px);aspect-ratio:4/5;margin-inline:auto;transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .4s var(--ease)}
+.portrait .frame{position:absolute;inset:0;border-radius:var(--radius-lg);overflow:hidden;background:linear-gradient(150deg,var(--accent),var(--violet) 60%,var(--cyan));box-shadow:var(--shadow);display:grid;place-items:center}
+.portrait img{width:100%;height:100%;object-fit:cover}
+.portrait .mono{font:700 clamp(5rem,16vw,9rem)/1 var(--font-display);letter-spacing:-.06em;color:var(--accent-ink)}
+.portrait .ring{position:absolute;border-radius:var(--radius-lg);border:2px solid var(--accent-hi);inset:-16px 16px 16px -16px;z-index:-1;opacity:.45;animation:bob 8s ease-in-out infinite}
+.portrait .ring.r2{inset:16px -16px -16px 16px;border-color:var(--violet);opacity:.3;animation-delay:-3s}
+.portrait .stamp{position:absolute;right:-14px;bottom:28px;display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;background:var(--surface);box-shadow:var(--shadow);font:600 .86rem var(--font-body);transform:translateZ(60px)}
+.portrait .stamp .ic{color:var(--violet)}
+.about .copy{display:grid;gap:16px;color:var(--ink-2);font-size:1.05rem}
+.about .h2{margin-top:16px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.chips li{padding:7px 16px;border-radius:999px;background:var(--accent-soft);color:var(--accent-deep);font:600 .88rem var(--font-body)}
+.checks{display:grid;gap:10px;margin-top:6px}
+.checks li{display:flex;gap:10px;align-items:flex-start;color:var(--ink)}
+.checks .ic{color:var(--ok);margin-top:.28em}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));gap:16px;margin-bottom:28px}
+.stat{padding:26px 24px;border-radius:var(--radius);background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow-sm)}
+.stat b{display:block;font:700 clamp(2rem,4vw,3rem)/1 var(--font-display);letter-spacing:-.04em;color:var(--accent)}
+.stat>span{display:block;margin-top:8px;color:var(--ink-2);font-weight:500}
+.sample-note{font-size:.84rem;color:var(--ink-3);margin-bottom:28px}
+.quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:20px}
+.quotes>li{display:flex}
+.quote{display:flex;flex-direction:column;gap:18px;width:100%;padding:26px;border-radius:var(--radius-lg);background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow-sm);transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .4s var(--ease),box-shadow .4s}
+.quote:hover{box-shadow:var(--shadow)}
+.quote p{color:var(--ink);font-size:1.02rem;flex:1}
+.who{display:flex;align-items:center;gap:12px}
+.avatar{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent-deep);font:700 .95rem var(--font-display)}
+.who b{display:block;font:600 .95rem var(--font-display)}
+.who small{color:var(--ink-3);font-size:.84rem}
+
+.contact{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(32px,6vw,72px);align-items:start}
+.direct{display:grid;gap:12px;margin-top:28px}
+.direct a{display:flex;align-items:center;gap:14px;min-height:64px;padding:0 20px;border-radius:var(--radius);background:var(--surface);border:1px solid var(--line);font-weight:600;transition:border-color .2s,transform .3s var(--ease)}
+.direct a:hover{border-color:var(--accent);transform:translateX(4px)}
+.direct .ic{color:var(--accent);font-size:1.3rem}
+.direct small{display:block;color:var(--ink-3);font-weight:500}
+.form-card{padding:clamp(22px,3vw,34px);border-radius:var(--radius-lg);background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
+.form-card h3{font-size:1.4rem;margin-bottom:6px}
+.form-card>p{color:var(--ink-2);margin-bottom:22px}
+.fields{display:grid;gap:16px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field label{display:block;font:600 .9rem var(--font-body);margin-bottom:6px}
+.field label i{font-style:normal;color:var(--ink-3);font-weight:500}
+.field input,.field select,.field textarea{width:100%;min-height:48px;padding:12px 14px;border-radius:12px;border:1px solid var(--line-2);background:var(--surface);color:var(--ink);font:inherit;transition:border-color .2s,box-shadow .2s}
+.field textarea{min-height:120px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-soft)}
+.field [aria-invalid="true"]{border-color:var(--err)}
+.field .e{display:block;margin-top:6px;color:var(--err);font-size:.86rem;font-weight:500}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.form-note{min-height:1.4em;font-size:.92rem;font-weight:500;margin-top:14px}
+.form-note.bad{color:var(--err)}
+.submit-row{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:6px}
+.submit-row small{color:var(--ink-3);font-size:.84rem;flex:1;min-width:180px}
+.spin{width:18px;height:18px;border-radius:50%;border:2.5px solid color-mix(in srgb,var(--accent-ink) 40%,transparent);border-top-color:var(--accent-ink);animation:rot .7s linear infinite}
+@keyframes rot{to{transform:rotate(360deg)}}
+.done{display:grid;gap:14px;justify-items:start;padding:12px 0}
+.done .tick{width:60px;height:60px;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--ok) 14%,transparent);color:var(--ok);font-size:1.8rem;animation:pop .6s var(--ease)}
+
+.faq{max-width:860px;display:grid;gap:12px}
+.faq-item{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);transition:border-color .3s,box-shadow .3s}
+.faq-item.open{border-color:color-mix(in srgb,var(--accent) 40%,transparent);box-shadow:var(--shadow-sm)}
+.faq-q{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;min-height:64px;padding:12px 22px;text-align:left;font:600 1.05rem var(--font-display)}
+.faq-q .ic{transition:transform .4s var(--ease);color:var(--accent)}
+.faq-item.open .faq-q .ic{transform:rotate(45deg)}
+.faq-a{display:grid;grid-template-rows:0fr;visibility:hidden;transition:grid-template-rows .45s var(--ease),visibility .45s}
+.faq-item.open .faq-a{grid-template-rows:1fr;visibility:visible}
+.faq-a>div{overflow:hidden}
+.faq-a p{padding:0 22px 22px;color:var(--ink-2)}
+
+.footer{background:var(--ink);color:var(--surface);padding:64px 0 36px}
+.foot-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:32px;padding-bottom:36px;border-bottom:1px solid color-mix(in srgb,var(--surface) 16%,transparent)}
+.footer p,.footer small{color:color-mix(in srgb,var(--surface) 72%,transparent)}
+.foot-top p{max-width:42ch;margin-top:14px}
+.foot-links{display:flex;flex-wrap:wrap;gap:4px 8px;align-content:flex-start}
+.foot-links a{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;border-radius:999px;color:color-mix(in srgb,var(--surface) 82%,transparent);transition:background .2s,color .2s}
+.foot-links a:hover{background:color-mix(in srgb,var(--surface) 12%,transparent);color:var(--surface)}
+.foot-bot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-top:24px;font-size:.88rem}
+.foot-bot p{max-width:70ch}
+
+.fab{position:fixed;right:16px;bottom:16px;z-index:70;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:var(--wa);color:var(--accent-ink);font-size:1.6rem;box-shadow:0 16px 30px -12px var(--wa);transition:transform .3s var(--ease)}
+.fab:hover{transform:scale(1.08)}
+.offline{position:fixed;left:50%;bottom:20px;z-index:130;transform:translateX(-50%);max-width:calc(100% - 32px);padding:12px 20px;border-radius:999px;background:var(--ink);color:var(--surface);font-weight:600;font-size:.92rem;box-shadow:var(--shadow);animation:drop .3s var(--ease)}
+
+@media (max-width:1024px){
+  .hero-grid{gap:24px}
+  .road-wrap,.about,.contact{grid-template-columns:1fr}
+  .road-wrap .sec-head{position:static;margin-bottom:32px}
+}
+@media (max-width:900px){
+  .nav-links,.nav-right .btn{display:none}
+  .burger{display:grid}
+  .hero{min-height:auto;padding-bottom:56px}
+  .hero-grid{grid-template-columns:1fr}
+  .hero-scrim{background:linear-gradient(180deg,var(--bg) 0%,color-mix(in srgb,var(--bg) 80%,transparent) 45%,color-mix(in srgb,var(--bg) 20%,transparent) 100%)}
+  .stage{min-height:400px;margin-top:8px}
+  .deck{width:min(100%,400px)}
+  .dc-flow{right:-2%}
+  .dc-chip{left:-2%}
+}
+@media (max-width:640px){
+  .two{grid-template-columns:1fr}
+  .dlg-head,.dlg-body,.dlg-foot{padding-inline:20px}
+  .dlg-foot .acts,.dlg-foot .acts .btn{width:100%}
+  .hero-cta .btn{flex:1 1 100%}
+  .stage{min-height:360px}
+  .deck{width:min(92%,340px)}
+  .step{grid-template-columns:40px minmax(0,1fr);gap:14px}
+  .step-dot{width:40px;height:40px}
+  .road-line{left:19px}
+  .step-card{padding:18px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;animation-delay:0ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .rv{opacity:1;transform:none}
+  .h1 .w>span{transform:none}
+  .step-card{opacity:1;transform:none}
+  .track{animation:none;overflow-x:auto}
+}
+</style>
+</head>
+<body>
+<noscript><p style="padding:24px;font-family:system-ui,sans-serif">This site needs JavaScript to display the course catalogue. Please enable it, or contact us directly by email.</p></noscript>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5z"/><path d="M4 5.5v16"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 17v4M17 19h4"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/><path d="M9 11h6M9 14h4"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+    <symbol id="i-cap" viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M14 5l-4 14"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3A4 4 0 0 0 11 18.7l1-1"/></symbol>
+  </defs>
+</svg>
+
+<div id="root">
+  <header style="padding:96px 24px 48px;max-width:760px;margin:auto;font-family:system-ui,sans-serif">
+    <h1>AI Master Academy</h1>
+    <p>Practical, project-based AI courses: prompting, automations and AI agents.</p>
+    <p>Loading the course catalogue&hellip;</p>
+  </header>
+</div>
+
+<script id="site-data" type="application/json">
+{
+  "site": {
+    "brand": "AI Master",
+    "name": "Your Name",
+    "role": "AI Educator & Automation Builder",
+    "title": "AI Master Academy | Learn AI by Building Real Things",
+    "description": "Practical, project-based AI courses: prompting, automations and AI agents. Learn with a working AI educator and ship real projects.",
+    "url": "https://example.com/",
+    "email": "hello@example.com",
+    "whatsapp": "12025550143",
+    "formEndpoint": "",
+    "currency": "USD",
+    "locale": "en-US",
+    "disclaimer": "Results depend on your effort and background. No income, job or outcome is guaranteed. Tool names are trademarks of their owners and are used only to describe what you will learn."
+  },
+  "hero": {
+    "pill": "Self-paced courses with lifetime access",
+    "lead": "Learn AI by",
+    "accent": "building real things.",
+    "sub": "Practical, project-based AI courses that take you from curious to confident: prompts, automations and agents you can put to work the same week.",
+    "facts": ["Project-based lessons", "Lifetime access", "Certificate of completion"],
+    "prompts": [
+      {"q": "Turn this 40-page report into 3 action items for my team.", "a": ["Renegotiate the vendor SLA before Q3", "Automate the weekly status summary", "Assign an owner to the data-quality risk"]},
+      {"q": "Plan a 5-step automation for my client onboarding.", "a": ["Form submission triggers the workflow", "AI drafts a personalised welcome email", "Task is created and the client is notified"]},
+      {"q": "Write a prompt that gives me consistent product descriptions.", "a": ["Define role, tone and format once", "Add two examples as guard rails", "Test, score and refine in a loop"]}
+    ]
+  },
+  "copy": {
+    "courses": {"eyebrow": "Courses", "title": "Pick your path to AI mastery", "lead": "Start with the basics or jump straight into agents. Every course is built around projects you can show to clients and employers."},
+    "roadmap": {"eyebrow": "Roadmap", "title": "From first prompt to shipped project", "lead": "A clear path, one skill at a time. Each stage ends with something you built, not just something you watched."},
+    "about": {"eyebrow": "Your instructor", "title": "Hi, I am Your Name."},
+    "results": {"eyebrow": "Results", "title": "Learners who built, shipped and kept going", "lead": "Real projects, real feedback. Replace these sample cards with your own student stories before launch."},
+    "faq": {"eyebrow": "FAQ", "title": "Questions, answered"},
+    "contact": {"eyebrow": "Enroll or ask", "title": "Ready to start? Let us talk.", "lead": "Enroll straight from a course card, or send a quick message and I will help you choose the right path."}
+  },
+  "tools": ["ChatGPT", "Claude", "Gemini", "Midjourney", "n8n", "Zapier", "Python", "LangChain", "Notion AI", "Cursor"],
+  "stats": {
+    "sample": true,
+    "items": [
+      {"value": 12000, "suffix": "+", "label": "Learners taught"},
+      {"value": 4, "suffix": "", "label": "Hands-on courses"},
+      {"value": 97, "suffix": "", "label": "Video lessons"},
+      {"value": 4.9, "suffix": "/5", "decimals": 1, "label": "Average rating"}
+    ]
+  },
+  "courses": [
+    {
+      "id": "ai-foundations", "title": "AI Foundations", "level": "Beginner", "badge": "Start here", "icon": "spark",
+      "price": 49, "compareAt": 0, "duration": "4 hours", "lessons": 24, "paymentLink": "", "sample": true,
+      "blurb": "Understand how modern AI works and start using it confidently every day, with zero coding.",
+      "outcomes": ["Explain how large language models work in plain words", "Use AI assistants safely for research, writing and planning", "Spot hallucinations and verify answers quickly", "Build your first personal AI workflow"],
+      "modules": [
+        {"title": "How AI actually works", "topics": ["Models, tokens and context", "What AI is good and bad at", "Privacy and safe use"]},
+        {"title": "Everyday AI toolkit", "topics": ["Choosing the right assistant", "Research and summarising", "Writing and editing with AI"]},
+        {"title": "Fact-checking and judgement", "topics": ["Hallucinations explained", "Verification routines", "Bias and limits"]},
+        {"title": "Your first AI workflow", "topics": ["Mapping a repetitive task", "Building the workflow", "Measuring time saved"]}
+      ]
+    },
+    {
+      "id": "prompt-mastery", "title": "Prompt Engineering Mastery", "level": "Intermediate", "badge": "", "icon": "chat",
+      "price": 79, "compareAt": 0, "duration": "6 hours", "lessons": 32, "paymentLink": "", "sample": true,
+      "blurb": "Write prompts that give reliable, high-quality output, and build a reusable prompt library.",
+      "outcomes": ["Structure prompts with role, context, constraints and format", "Use examples and chains to raise quality", "Evaluate and iterate prompts with simple tests", "Ship a personal prompt library for your work"],
+      "modules": [
+        {"title": "Prompt anatomy", "topics": ["Role, task, context, format", "Constraints that work", "Common failure patterns"]},
+        {"title": "Advanced techniques", "topics": ["Few-shot examples", "Step-by-step reasoning", "Self-critique loops"]},
+        {"title": "Prompts for real work", "topics": ["Marketing and content", "Data and analysis", "Support and operations"]},
+        {"title": "Testing and libraries", "topics": ["Scoring outputs", "Versioning prompts", "Sharing with a team"]}
+      ]
+    },
+    {
+      "id": "ai-agents", "title": "AI Agents & Automations", "level": "Advanced", "badge": "", "icon": "bolt",
+      "price": 129, "compareAt": 0, "duration": "9 hours", "lessons": 41, "paymentLink": "", "sample": true,
+      "blurb": "Connect AI to your tools and build agents that handle real tasks end to end.",
+      "outcomes": ["Design automations with triggers, steps and error handling", "Build tool-using AI agents with memory", "Connect AI to email, sheets, CRMs and chat", "Deploy and monitor an agent you can hand to a client"],
+      "modules": [
+        {"title": "Automation fundamentals", "topics": ["Triggers, actions and data", "APIs and webhooks in plain words", "Error handling and retries"]},
+        {"title": "Your first agent", "topics": ["Tools and function calling", "Memory and context", "Guard rails and approvals"]},
+        {"title": "Real-world builds", "topics": ["Lead capture and follow-up", "Support triage agent", "Reporting automation"]},
+        {"title": "Launch and maintain", "topics": ["Logging and alerts", "Cost control", "Handover to a client"]}
+      ]
+    },
+    {
+      "id": "ai-master-bootcamp", "title": "AI Master Bootcamp", "level": "Bootcamp", "badge": "Best value", "icon": "layers", "featured": true,
+      "price": 199, "compareAt": 257, "duration": "19 hours", "lessons": 97, "paymentLink": "", "sample": true,
+      "blurb": "All three courses in one structured path, plus a capstone project and a portfolio review.",
+      "outcomes": ["Everything in Foundations, Prompting and Agents", "A guided capstone you can show to clients", "Portfolio review and written feedback", "Access to the private learner community"],
+      "modules": [
+        {"title": "Phase 1: Foundations", "topics": ["All 24 Foundations lessons", "Starter workflow project"]},
+        {"title": "Phase 2: Prompting", "topics": ["All 32 Prompt Mastery lessons", "Your prompt library"]},
+        {"title": "Phase 3: Agents", "topics": ["All 41 Agents lessons", "A deployed automation"]},
+        {"title": "Capstone", "topics": ["Pick a real problem", "Build, test and present", "Portfolio review"]}
+      ]
+    }
+  ],
+  "roadmap": [
+    {"when": "Stage 1", "title": "Understand the machine", "text": "Learn how models work, where they fail and how to use them safely, so every later skill stands on solid ground."},
+    {"when": "Stage 2", "title": "Master the prompt", "text": "Turn vague requests into precise instructions and build a prompt library that makes quality repeatable."},
+    {"when": "Stage 3", "title": "Automate the boring parts", "text": "Connect AI to the tools you already use and remove hours of manual work from your week."},
+    {"when": "Stage 4", "title": "Build an agent", "text": "Give AI tools, memory and guard rails, then let it complete a real task end to end."},
+    {"when": "Stage 5", "title": "Ship your capstone", "text": "Pick a real problem, build the solution and present it with a portfolio-ready write-up."}
+  ],
+  "about": {
+    "photo": "",
+    "paragraphs": [
+      "I teach people how to use AI to get real work done, not just talk about it. My courses are short, practical and built around projects.",
+      "Replace this paragraph with your story: your background, the problems you have solved with AI and why you teach."
+    ],
+    "highlights": ["Learn by building, not by watching slides", "Plain language, no jargon walls", "Templates and starter files with every course"],
+    "skills": ["Prompt engineering", "AI automation", "AI agents", "Python basics", "No-code tools", "Workflow design"],
+    "stamp": "Teaching online"
+  },
+  "testimonials": [
+    {"name": "Sample Learner A", "role": "Freelance designer", "quote": "I finally understood how to talk to AI. My first automation saved me hours every single week.", "sample": true},
+    {"name": "Sample Learner B", "role": "Operations manager", "quote": "Clear, practical and zero fluff. I rebuilt our reporting process in an afternoon after the agents course.", "sample": true},
+    {"name": "Sample Learner C", "role": "Marketing lead", "quote": "The prompt library alone was worth it. My whole team now uses the same templates.", "sample": true}
+  ],
+  "faq": [
+    {"q": "Do I need to know how to code?", "a": "No. Foundations and Prompt Mastery need no coding at all. The agents course uses visual tools first and shows optional Python for people who want to go further."},
+    {"q": "How do I get access after paying?", "a": "Payment happens on the secure checkout page linked from each course. After a successful payment you receive an email with your access details. If anything is missing, message me on WhatsApp or email and I will fix it."},
+    {"q": "Is there a refund policy?", "a": "Sample policy: refunds within 7 days if you have completed less than 20% of the course. Replace this answer with your own policy before launch."},
+    {"q": "Do I get a certificate?", "a": "Yes. Each course includes a certificate of completion you can add to your profile or portfolio."},
+    {"q": "Which AI tools do I need?", "a": "Most lessons work with free tiers. Where a paid tool helps, the lesson says so and offers a free alternative."},
+    {"q": "Can I buy for my team?", "a": "Yes. Send a message with your team size and I will prepare a group plan."}
+  ],
+  "social": [
+    {"label": "YouTube", "url": "https://youtube.com/"},
+    {"label": "LinkedIn", "url": "https://linkedin.com/"},
+    {"label": "GitHub", "url": "https://github.com/"}
+  ]
+}
+</script>
+
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}</script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/htm@3.1.1/dist/htm.umd.js" integrity="sha384-toVdrLSMaw7Y55MowcKqkmFL/Ek6Sky62NOk0b5sDDZBu2wcoPyyQUt9unDVjXhL" crossorigin="anonymous"></script>
+<script type="module">
+(function () {
+  if (!(window.React && window.ReactDOM && window.htm)) {
+    const p = document.querySelector('#root p:last-child');
+    if (p) p.textContent = 'The page could not load its scripts. Please check your connection and reload.';
+    return;
+  }
+
+  const DATA = JSON.parse(document.getElementById('site-data').textContent);
+  const S = DATA.site;
+  const R = window.React;
+  const { useState, useEffect, useRef, useCallback, Fragment } = R;
+  const html = window.htm.bind(R.createElement);
+
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const ptr = { x: 0, y: 0 };
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  const store = {
+    get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  };
+  const safeUrl = (u) => {
+    if (!u) return '';
+    try { const x = new URL(u, location.href); return x.protocol === 'https:' ? x.href : ''; } catch (e) { return ''; }
+  };
+  const safeMail = (m) => (/^[^\s@<>"]+@[^\s@<>"]+\.[^\s@<>"]+$/.test(m || '') ? m : '');
+  const waLink = (text) => {
+    const d = String(S.whatsapp || '').replace(/\D/g, '');
+    return d ? 'https://wa.me/' + d + '?text=' + encodeURIComponent(text) : '';
+  };
+  const money = (n) => {
+    try { return new Intl.NumberFormat(S.locale || 'en-US', { style: 'currency', currency: S.currency || 'USD', maximumFractionDigits: 0 }).format(n); }
+    catch (e) { return '$' + n; }
+  };
+  const scrollToId = (id) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+  };
+  const initials = (name) => String(name || '').split(/\s+/).filter(Boolean).map((w) => w[0]).join('').slice(0, 2).toUpperCase();
+
+  addEventListener('pointermove', (e) => {
+    ptr.x = (e.clientX / innerWidth) * 2 - 1;
+    ptr.y = -((e.clientY / innerHeight) * 2 - 1);
+  }, { passive: true });
+
+  const io = 'IntersectionObserver' in window
+    ? new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' })
+    : null;
+
+  function initTilt() {
+    if (reduced || !finePointer) return;
+    let cur = null, raf = 0, ev = null;
+    const reset = (el) => {
+      if (!el) return;
+      el.style.setProperty('--rx', '0deg');
+      el.style.setProperty('--ry', '0deg');
+    };
+    const apply = () => {
+      raf = 0;
+      if (!cur || !ev) return;
+      const r = cur.getBoundingClientRect();
+      const x = (ev.clientX - r.left) / r.width;
+      const y = (ev.clientY - r.top) / r.height;
+      const max = parseFloat(cur.dataset.tilt) || 8;
+      cur.style.setProperty('--ry', ((x - 0.5) * max * 2).toFixed(2) + 'deg');
+      cur.style.setProperty('--rx', ((0.5 - y) * max * 2).toFixed(2) + 'deg');
+      cur.style.setProperty('--mx', (x * 100).toFixed(1) + '%');
+      cur.style.setProperty('--my', (y * 100).toFixed(1) + '%');
+    };
+    document.addEventListener('pointermove', (e) => {
+      const t = e.target.closest ? e.target.closest('[data-tilt]') : null;
+      if (t !== cur) { reset(cur); cur = t; }
+      ev = e;
+      if (cur && !raf) raf = requestAnimationFrame(apply);
+    }, { passive: true });
+    document.documentElement.addEventListener('mouseleave', () => { reset(cur); cur = null; });
+  }
+
+  async function initField(canvas) {
+    if (!canvas) return;
+    let T;
+    try { T = await import('three'); } catch (e) { return; }
+    T.ColorManagement.enabled = false;
+    let renderer;
+    try {
+      renderer = new T.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'low-power' });
+    } catch (e) { return; }
+
+    const host = canvas.parentElement;
+    const cs = getComputedStyle(document.documentElement);
+    const tok = (n) => new T.Color(cs.getPropertyValue(n).trim());
+    const palette = [tok('--accent'), tok('--accent'), tok('--accent-hi'), tok('--violet'), tok('--cyan')];
+    const mobile = innerWidth < 768;
+    const N = mobile ? 64 : 128;
+    const LINK = mobile ? 2.9 : 2.6;
+    const LINK2 = LINK * LINK;
+    const MAXSEG = N * 5;
+    const BX = 9, BY = 5.2, BZ = 4.5;
+
+    const scene = new T.Scene();
+    const camera = new T.PerspectiveCamera(50, 1, 0.1, 60);
+    camera.position.set(0, 0, 14);
+    const group = new T.Group();
+    scene.add(group);
+
+    const pos = new Float32Array(N * 3), vel = new Float32Array(N * 3);
+    const size = new Float32Array(N), col = new Float32Array(N * 3);
+    for (let i = 0; i < N; i++) {
+      pos[i * 3] = (Math.random() * 2 - 1) * BX;
+      pos[i * 3 + 1] = (Math.random() * 2 - 1) * BY;
+      pos[i * 3 + 2] = (Math.random() * 2 - 1) * BZ;
+      vel[i * 3] = (Math.random() - 0.5) * 0.5;
+      vel[i * 3 + 1] = (Math.random() - 0.5) * 0.5;
+      vel[i * 3 + 2] = (Math.random() - 0.5) * 0.3;
+      size[i] = Math.random() < 0.1 ? 9 + Math.random() * 4 : 2.2 + Math.random() * 3;
+      const c = palette[(Math.random() * palette.length) | 0];
+      col[i * 3] = c.r; col[i * 3 + 1] = c.g; col[i * 3 + 2] = c.b;
+    }
+
+    const pg = new T.BufferGeometry();
+    const posAttr = new T.BufferAttribute(pos, 3);
+    posAttr.setUsage(T.DynamicDrawUsage);
+    pg.setAttribute('position', posAttr);
+    pg.setAttribute('aSize', new T.BufferAttribute(size, 1));
+    pg.setAttribute('aColor', new T.BufferAttribute(col, 3));
+    const pm = new T.ShaderMaterial({
+      transparent: true, depthWrite: false,
+      uniforms: { uPx: { value: 1 } },
+      vertexShader: 'attribute float aSize;attribute vec3 aColor;uniform float uPx;varying vec3 vC;varying float vA;void main(){vC=aColor;vec4 mv=modelViewMatrix*vec4(position,1.0);gl_PointSize=aSize*uPx*(24.0/-mv.z);vA=clamp(1.25-(-mv.z-9.0)/14.0,0.3,1.0);gl_Position=projectionMatrix*mv;}',
+      fragmentShader: 'varying vec3 vC;varying float vA;void main(){float d=length(gl_PointCoord-vec2(0.5));if(d>0.5)discard;float halo=smoothstep(0.5,0.2,d)*0.28;float core=smoothstep(0.2,0.12,d)*0.95;gl_FragColor=vec4(vC,(halo+core)*vA);}'
+    });
+    const pts = new T.Points(pg, pm);
+    pts.frustumCulled = false;
+
+    const lpos = new Float32Array(MAXSEG * 6), lalpha = new Float32Array(MAXSEG * 2);
+    const lg = new T.BufferGeometry();
+    const lposAttr = new T.BufferAttribute(lpos, 3);
+    const lalphaAttr = new T.BufferAttribute(lalpha, 1);
+    lposAttr.setUsage(T.DynamicDrawUsage);
+    lalphaAttr.setUsage(T.DynamicDrawUsage);
+    lg.setAttribute('position', lposAttr);
+    lg.setAttribute('aAlpha', lalphaAttr);
+    lg.setDrawRange(0, 0);
+    const lm = new T.ShaderMaterial({
+      transparent: true, depthWrite: false,
+      uniforms: { uColor: { value: tok('--accent') } },
+      vertexShader: 'attribute float aAlpha;varying float vA;void main(){vA=aAlpha;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}',
+      fragmentShader: 'uniform vec3 uColor;varying float vA;void main(){gl_FragColor=vec4(uColor,vA);}'
+    });
+    const ls = new T.LineSegments(lg, lm);
+    ls.frustumCulled = false;
+    group.add(pts, ls);
+
+    const sim = (dt, t) => {
+      const k = dt * 60;
+      const half = Math.tan((25 * Math.PI) / 180) * 14;
+      const sc = group.scale.x || 1;
+      const tx = (ptr.x * half * camera.aspect - group.position.x) / sc;
+      const ty = (ptr.y * half) / sc;
+      for (let i = 0; i < N; i++) {
+        const o = i * 3;
+        pos[o] += vel[o] * dt;
+        pos[o + 1] += vel[o + 1] * dt;
+        pos[o + 2] += vel[o + 2] * dt;
+        if (pos[o] > BX || pos[o] < -BX) { vel[o] = -vel[o]; pos[o] = clamp(pos[o], -BX, BX); }
+        if (pos[o + 1] > BY || pos[o + 1] < -BY) { vel[o + 1] = -vel[o + 1]; pos[o + 1] = clamp(pos[o + 1], -BY, BY); }
+        if (pos[o + 2] > BZ || pos[o + 2] < -BZ) { vel[o + 2] = -vel[o + 2]; pos[o + 2] = clamp(pos[o + 2], -BZ, BZ); }
+        if (finePointer && !reduced) {
+          const dx = pos[o] - tx, dy = pos[o + 1] - ty;
+          const d2 = dx * dx + dy * dy;
+          if (d2 < 5.8 && d2 > 0.0001) {
+            const d = Math.sqrt(d2);
+            const f = (1 - d2 / 5.8) * 0.07 * k;
+            pos[o] += (dx / d) * f;
+            pos[o + 1] += (dy / d) * f;
+          }
+        }
+      }
+      let seg = 0;
+      for (let i = 0; i < N && seg < MAXSEG; i++) {
+        const a = i * 3;
+        for (let j = i + 1; j < N && seg < MAXSEG; j++) {
+          const b = j * 3;
+          const dx = pos[a] - pos[b], dy = pos[a + 1] - pos[b + 1], dz = pos[a + 2] - pos[b + 2];
+          const d2 = dx * dx + dy * dy + dz * dz;
+          if (d2 < LINK2) {
+            const al = (1 - Math.sqrt(d2) / LINK) * 0.38;
+            const s = seg * 6;
+            lpos[s] = pos[a]; lpos[s + 1] = pos[a + 1]; lpos[s + 2] = pos[a + 2];
+            lpos[s + 3] = pos[b]; lpos[s + 4] = pos[b + 1]; lpos[s + 5] = pos[b + 2];
+            lalpha[seg * 2] = al; lalpha[seg * 2 + 1] = al;
+            seg++;
+          }
+        }
+      }
+      posAttr.needsUpdate = true;
+      lposAttr.needsUpdate = true;
+      lalphaAttr.needsUpdate = true;
+      lg.setDrawRange(0, seg * 2);
+
+      const sp = clamp(scrollY / (host.offsetHeight || 1), 0, 1.2);
+      const ease = Math.min(1, dt * 2.5);
+      const ry = ptr.x * 0.22 + sp * 0.7 + Math.sin(t * 0.1) * 0.15;
+      const rx = -ptr.y * 0.12;
+      group.rotation.y += (ry - group.rotation.y) * ease;
+      group.rotation.x += (rx - group.rotation.x) * ease;
+      group.position.y = sp * 1.5;
+      camera.position.z = 14 + sp * 3;
+    };
+
+    const resize = () => {
+      const w = host.clientWidth, h = host.clientHeight;
+      if (!w || !h) return;
+      const dpr = Math.min(window.devicePixelRatio || 1, mobile ? 1.5 : 2);
+      renderer.setPixelRatio(dpr);
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      pm.uniforms.uPx.value = dpr;
+      const a = camera.aspect;
+      group.scale.setScalar(a < 0.9 ? 0.62 : a < 1.3 ? 0.85 : 1);
+      group.position.x = a > 1.3 ? 3.2 : 0;
+      renderer.render(scene, camera);
+    };
+
+    let raf = 0, vis = true, last = performance.now();
+    const frame = (now) => {
+      raf = 0;
+      if (!vis || document.hidden) return;
+      const dt = Math.min((now - last) / 1000, 0.05);
+      last = now;
+      sim(dt, now / 1000);
+      renderer.render(scene, camera);
+      raf = requestAnimationFrame(frame);
+    };
+    const start = () => {
+      if (raf || reduced) return;
+      last = performance.now();
+      raf = requestAnimationFrame(frame);
+    };
+    const stop = () => { cancelAnimationFrame(raf); raf = 0; };
+
+    canvas.addEventListener('webglcontextlost', (e) => {
+      e.preventDefault();
+      stop();
+      host.classList.remove('field-on');
+    });
+
+    sim(0, 0);
+    resize();
+    host.classList.add('field-on');
+    if ('ResizeObserver' in window) new ResizeObserver(resize).observe(host);
+    else addEventListener('resize', resize);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(([e]) => { vis = e.isIntersecting; if (vis) start(); else stop(); }).observe(host);
+    } else start();
+    document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); else if (vis) start(); });
+  }
+
+  const Ic = ({ n, cls = '' }) => html`<svg className=${'ic ' + cls} aria-hidden="true" focusable="false"><use href=${'#i-' + n}/></svg>`;
+
+  function Rv({ as = 'div', delay = 0, className = '', children, ...p }) {
+    const ref = useRef(null);
+    useEffect(() => {
+      const el = ref.current;
+      if (!el) return;
+      if (!io || reduced) { el.classList.add('in'); return; }
+      io.observe(el);
+      return () => io.unobserve(el);
+    }, []);
+    return R.createElement(as, { ref, className: 'rv ' + className, style: { '--d': delay + 'ms' }, ...p }, children);
+  }
+
+  function Count({ to, suffix = '', decimals = 0 }) {
+    const ref = useRef(null);
+    const [v, setV] = useState(reduced ? to : 0);
+    useEffect(() => {
+      const el = ref.current;
+      if (reduced || !el || !('IntersectionObserver' in window)) { setV(to); return; }
+      let raf = 0, t0 = 0;
+      const run = (t) => {
+        t0 = t0 || t;
+        const p = clamp((t - t0) / 1400, 0, 1);
+        setV(to * (1 - Math.pow(1 - p, 3)));
+        if (p < 1) raf = requestAnimationFrame(run);
+      };
+      const o = new IntersectionObserver(([e]) => {
+        if (e.isIntersecting) { o.disconnect(); raf = requestAnimationFrame(run); }
+      }, { threshold: 0.4 });
+      o.observe(el);
+      return () => { o.disconnect(); cancelAnimationFrame(raf); };
+    }, [to]);
+    const fmt = (n) => (decimals ? n.toFixed(decimals) : Math.round(n).toLocaleString(S.locale || 'en-US'));
+    return html`<span ref=${ref} className="num"><span aria-hidden="true">${fmt(v)}${suffix}</span><span className="sr">${fmt(to)}${suffix}</span></span>`;
+  }
+
+  function Words({ text, from = 0, cls = '' }) {
+    return text.split(' ').map((w, i) => html`<${Fragment} key=${i}><span className="w"><span className=${cls} style=${{ '--i': from + i }}>${w}</span></span>${' '}<//>`);
+  }
+
+  function Head({ c, id }) {
+    return html`<${Rv} className="sec-head"><span className="eyebrow">${c.eyebrow}</span><h2 className="h2" id=${id}>${c.title}</h2>${c.lead ? html`<p className="lead">${c.lead}</p>` : null}<//>`;
+  }
+
+  function Nav() {
+    const [solid, setSolid] = useState(false);
+    const [open, setOpen] = useState(false);
+    useEffect(() => {
+      const f = () => setSolid(scrollY > 12);
+      f();
+      addEventListener('scroll', f, { passive: true });
+      return () => removeEventListener('scroll', f);
+    }, []);
+    useEffect(() => {
+      if (!open) return;
+      const k = (e) => { if (e.key === 'Escape') setOpen(false); };
+      addEventListener('keydown', k);
+      return () => removeEventListener('keydown', k);
+    }, [open]);
+    const links = [['courses', 'Courses'], ['roadmap', 'Roadmap'], ['about', 'About'], ['results', 'Results'], ['faq', 'FAQ']];
+    return html`<header className=${'nav' + (solid || open ? ' solid' : '')}>
+      <div className="wrap nav-in">
+        <a className="logo" href="#top" aria-label=${S.brand + ' home'}><span className="logo-mark"><${Ic} n="spark"/></span>${S.brand}</a>
+        <nav aria-label="Primary"><ul className="nav-links">${links.map(([id, t]) => html`<li key=${id}><a href=${'#' + id}>${t}</a></li>`)}</ul></nav>
+        <div className="nav-right">
+          <a className="btn btn-primary btn-sm" href="#contact">Enroll now</a>
+          <button type="button" className="burger" aria-label=${open ? 'Close menu' : 'Open menu'} aria-expanded=${open} aria-controls="mnav" onClick=${() => setOpen(!open)}><${Ic} n=${open ? 'close' : 'menu'}/></button>
+        </div>
+      </div>
+      <div className="mnav" id="mnav" hidden=${!open}>
+        ${links.map(([id, t]) => html`<a key=${id} href=${'#' + id} onClick=${() => setOpen(false)}>${t}</a>`)}
+        <a className="btn btn-primary" href="#contact" onClick=${() => setOpen(false)}>Enroll now</a>
+      </div>
+    </header>`;
+  }
+
+  function Demo({ items }) {
+    const [i, setI] = useState(0);
+    const [n, setN] = useState(reduced ? items[0].q.length : 0);
+    const [phase, setPhase] = useState(reduced ? 'show' : 'type');
+    useEffect(() => {
+      if (reduced) return;
+      let t;
+      if (phase === 'type') {
+        if (n < items[i].q.length) t = setTimeout(() => setN(n + 1), 32);
+        else t = setTimeout(() => setPhase('show'), 380);
+      } else {
+        t = setTimeout(() => { setPhase('type'); setN(0); setI((i + 1) % items.length); }, 4600);
+      }
+      return () => clearTimeout(t);
+    }, [phase, n, i]);
+    const cur = items[i];
+    return html`<${Fragment}>
+      <div className="bubble">${cur.q.slice(0, n)}${phase === 'type' ? html`<span className="caret"></span>` : null}</div>
+      <div className="reply" key=${i + phase}>${phase === 'show' ? cur.a.map((l, k) => html`<div className="ln" key=${k} style=${{ '--k': k }}><${Ic} n="check"/><span>${l}</span></div>`) : null}</div>
+    <//>`;
+  }
+
+  function Stage({ items }) {
+    const ref = useRef(null);
+    useEffect(() => {
+      const el = ref.current;
+      const host = el && el.closest('.hero');
+      if (!host || reduced || !finePointer) return;
+      let raf = 0;
+      const mv = (e) => {
+        const r = host.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5;
+        const y = (e.clientY - r.top) / r.height - 0.5;
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(() => {
+          el.style.setProperty('--ry', (-14 + x * 16).toFixed(1) + 'deg');
+          el.style.setProperty('--rx', (6 - y * 12).toFixed(1) + 'deg');
+        });
+      };
+      host.addEventListener('pointermove', mv, { passive: true });
+      return () => host.removeEventListener('pointermove', mv);
+    }, []);
+    return html`<div className="stage" aria-hidden="true">
+      <div className="deck" ref=${ref}>
+        <div className="dcard dc-main"><div className="win-dots"><i></i><i></i><i></i></div><${Demo} items=${items}/></div>
+        <div className="dcard dc-flow">
+          <p className="flow-title">Agent flow</p>
+          <svg className="flow-svg" viewBox="0 0 200 70" focusable="false">
+            <path className="flow-line" d="M30 36 C58 6 72 6 96 36"/>
+            <path className="flow-line" d="M104 36 C128 66 148 66 172 36"/>
+            <circle className="flow-node" cx="24" cy="36" r="9"/>
+            <circle className="flow-node hot" cx="100" cy="36" r="9"/>
+            <circle className="flow-node" cx="178" cy="36" r="9"/>
+          </svg>
+        </div>
+        <div className="dcard dc-chip"><${Ic} n="layers"/>Prompt library</div>
+        <div className="dcard dc-chip2"><${Ic} n="shield"/>Safe by design</div>
+      </div>
+    </div>`;
+  }
+
+  function Hero() {
+    const H = DATA.hero;
+    const wa = waLink('Hi ' + S.name + ', I would like to know more about your AI courses.');
+    return html`<section className="hero" id="top" aria-labelledby="h1">
+      <div className="hero-bg" aria-hidden="true"></div>
+      <div className="hero-dots" aria-hidden="true"></div>
+      <canvas id="field" aria-hidden="true"></canvas>
+      <div className="hero-scrim" aria-hidden="true"></div>
+      <div className="wrap hero-grid">
+        <div>
+          <span className="pill"><i className="dot"></i>${H.pill}</span>
+          <h1 className="h1" id="h1">${Words({ text: H.lead })}${Words({ text: H.accent, from: H.lead.split(' ').length, cls: 'grad' })}</h1>
+          <p className="hero-sub">${H.sub}</p>
+          <div className="hero-cta">
+            <a className="btn btn-primary" href="#courses">Explore courses <${Ic} n="arrow" cls="ic-go"/></a>
+            ${wa ? html`<a className="btn btn-ghost" href=${wa} target="_blank" rel="noopener noreferrer"><${Ic} n="chat"/>Chat on WhatsApp</a>` : null}
+          </div>
+          <ul className="facts">${H.facts.map((f) => html`<li key=${f}><${Ic} n="check"/>${f}</li>`)}</ul>
+        </div>
+        <${Stage} items=${H.prompts}/>
+      </div>
+    </section>`;
+  }
+
+  function Marquee() {
+    const group = (hid) => html`<ul aria-hidden=${hid ? 'true' : undefined}>${DATA.tools.map((t) => html`<li key=${t}><${Ic} n="spark"/>${t}</li>`)}</ul>`;
+    return html`<section className="marquee" aria-label="Tools covered in the courses">
+      <p className="marquee-label">Tools you will learn to use</p>
+      <div className="track">${group(false)}${group(true)}</div>
+    </section>`;
+  }
+
+  function CourseCard({ c, i, onOpen, onEnroll }) {
+    const pay = safeUrl(c.paymentLink);
+    const save = c.compareAt > c.price ? Math.round((1 - c.price / c.compareAt) * 100) : 0;
+    return html`<article className=${'card' + (c.featured ? ' feat' : '')} data-tilt="7">
+      <div className=${'art a' + (i % 4)} aria-hidden="true">
+        <span className="art-shape s3"></span>
+        <span className="art-shape s2"></span>
+        <span className="art-shape s1"><${Ic} n=${c.icon || 'spark'}/></span>
+        <span className="art-no">${String(i + 1).padStart(2, '0')}</span>
+        ${c.badge ? html`<span className="art-badge">${c.badge}</span>` : null}
+      </div>
+      <div className="card-body">
+        <div className="lvl"><span>${c.level}</span>${c.sample ? html`<span className="tag-sample">Sample</span>` : null}</div>
+        <h3>${c.title}</h3>
+        <p className="blurb">${c.blurb}</p>
+        <ul className="meta"><li><${Ic} n="clock"/>${c.duration}</li><li><${Ic} n="book"/>${c.lessons} lessons</li></ul>
+        <div className="price-row">
+          <span className="price num">${money(c.price)}</span>
+          ${save > 0 ? html`<${Fragment}><span className="was num">${money(c.compareAt)}</span><span className="save num">Save ${save}%</span><//>` : null}
+        </div>
+        <div className="card-actions">
+          <button type="button" className="btn btn-ghost btn-sm" onClick=${(e) => onOpen(c.id, e.currentTarget)}>Details</button>
+          ${pay
+            ? html`<a className="btn btn-primary btn-sm" href=${pay} target="_blank" rel="noopener noreferrer">Enroll</a>`
+            : html`<button type="button" className="btn btn-primary btn-sm" onClick=${() => onEnroll(c.id)}>Enroll</button>`}
+        </div>
+      </div>
+    </article>`;
+  }
+
+  function Courses({ onOpen, onEnroll }) {
+    const [lvl, setLvl] = useState('All');
+    const levels = ['All', ...new Set(DATA.courses.map((c) => c.level))];
+    const list = lvl === 'All' ? DATA.courses : DATA.courses.filter((c) => c.level === lvl);
+    return html`<section className="section alt" id="courses" aria-labelledby="courses-h">
+      <div className="wrap">
+        <${Head} c=${DATA.copy.courses} id="courses-h"/>
+        <div className="filters" role="group" aria-label="Filter courses by level">
+          ${levels.map((l) => html`<button key=${l} type="button" className="chip-btn" aria-pressed=${l === lvl} onClick=${() => setLvl(l)}>${l}</button>`)}
+        </div>
+        <p className="sr" role="status" aria-live="polite">${list.length} ${list.length === 1 ? 'course' : 'courses'} shown</p>
+        ${list.length
+          ? html`<ul className="grid-courses">${list.map((c, i) => html`<${Rv} as="li" key=${c.id} delay=${i * 80}><${CourseCard} c=${c} i=${DATA.courses.indexOf(c)} onOpen=${onOpen} onEnroll=${onEnroll}/><//>`)}</ul>`
+          : html`<div className="empty"><p>No courses match this level yet.</p><button type="button" className="btn btn-ghost btn-sm" onClick=${() => setLvl('All')}>Show all courses</button></div>`}
+      </div>
+    </section>`;
+  }
+
+  function Modal({ c, onClose, onEnroll }) {
+    const ref = useRef(null);
+    useEffect(() => {
+      const prev = document.activeElement;
+      const body = document.body;
+      const old = body.style.overflow;
+      body.style.overflow = 'hidden';
+      ref.current.focus();
+      const key = (e) => {
+        if (e.key === 'Escape') { e.stopPropagation(); onClose(); return; }
+        if (e.key !== 'Tab') return;
+        const f = [...ref.current.querySelectorAll('a[href],button:not([disabled]),summary')].filter((x) => x.offsetParent !== null);
+        if (!f.length) return;
+        const a = f[0], z = f[f.length - 1];
+        if (e.shiftKey && (document.activeElement === a || document.activeElement === ref.current)) { e.preventDefault(); z.focus(); }
+        else if (!e.shiftKey && document.activeElement === z) { e.preventDefault(); a.focus(); }
+      };
+      document.addEventListener('keydown', key);
+      return () => {
+        document.removeEventListener('keydown', key);
+        body.style.overflow = old;
+        if (prev && prev.focus) prev.focus({ preventScroll: true });
+      };
+    }, []);
+    const pay = safeUrl(c.paymentLink);
+    const wa = waLink('Hi ' + S.name + ', I am interested in "' + c.title + '". Can you share more details?');
+    return html`<div className="overlay" onMouseDown=${(e) => { if (e.target === e.currentTarget) onClose(); }}>
+      <div className="dialog" role="dialog" aria-modal="true" aria-labelledby="dlg-t" tabIndex="-1" ref=${ref}>
+        <div className="dlg-head">
+          <div>
+            <span className="eyebrow">${c.level}</span>
+            <h3 id="dlg-t" style=${{ marginTop: '10px' }}>${c.title}</h3>
+          </div>
+          <button type="button" className="x-btn" aria-label="Close details" onClick=${onClose}><${Ic} n="close"/></button>
+        </div>
+        <div className="dlg-body">
+          <p className="lead">${c.blurb}</p>
+          <ul className="meta"><li><${Ic} n="clock"/>${c.duration}</li><li><${Ic} n="book"/>${c.lessons} lessons</li><li><${Ic} n="cap"/>Certificate</li></ul>
+          <div>
+            <h4>What you will be able to do</h4>
+            <ul className="outcomes">${c.outcomes.map((o) => html`<li key=${o}><${Ic} n="check"/><span>${o}</span></li>`)}</ul>
+          </div>
+          <div>
+            <h4>Curriculum</h4>
+            <div className="mods">${c.modules.map((m, k) => html`<details key=${m.title} open=${k === 0}><summary>${m.title}<${Ic} n="chev"/></summary><ul>${m.topics.map((t) => html`<li key=${t}>${t}</li>`)}</ul></details>`)}</div>
+          </div>
+        </div>
+        <div className="dlg-foot">
+          <div><span className="price num">${money(c.price)}</span>${c.compareAt > c.price ? html` <span className="was num">${money(c.compareAt)}</span>` : null}</div>
+          <div className="acts">
+            ${wa ? html`<a className="btn btn-wa btn-sm" href=${wa} target="_blank" rel="noopener noreferrer"><${Ic} n="chat"/>Ask on WhatsApp</a>` : null}
+            ${pay
+              ? html`<a className="btn btn-primary btn-sm" href=${pay} target="_blank" rel="noopener noreferrer">Enroll now</a>`
+              : html`<button type="button" className="btn btn-primary btn-sm" onClick=${() => onEnroll(c.id)}>Enroll now</button>`}
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }
+
+  function Roadmap() {
+    const ref = useRef(null);
+    const items = DATA.roadmap;
+    const [on, setOn] = useState(reduced ? items.length : 0);
+    useEffect(() => {
+      const el = ref.current;
+      if (!el) return;
+      let raf = 0;
+      const f = () => {
+        raf = 0;
+        const r = el.getBoundingClientRect();
+        const p = clamp((innerHeight * 0.62 - r.top) / r.height, 0, 1);
+        el.style.setProperty('--p', p.toFixed(3));
+        setOn(reduced ? items.length : Math.min(items.length, Math.ceil(p * items.length) + (r.top < innerHeight * 0.75 ? 1 : 0)));
+      };
+      const sched = () => { if (!raf) raf = requestAnimationFrame(f); };
+      f();
+      addEventListener('scroll', sched, { passive: true });
+      addEventListener('resize', sched);
+      return () => { removeEventListener('scroll', sched); removeEventListener('resize', sched); cancelAnimationFrame(raf); };
+    }, []);
+    return html`<section className="section" id="roadmap" aria-labelledby="road-h">
+      <div className="wrap road-wrap">
+        <${Head} c=${DATA.copy.roadmap} id="road-h"/>
+        <div className="road" ref=${ref}>
+          <div className="road-line" aria-hidden="true"><div className="road-fill"></div></div>
+          <ol className="road-list">${items.map((s, i) => html`<li key=${s.title} className=${'step' + (i < on ? ' on' : '')}>
+            <span className="step-dot num" aria-hidden="true">${i + 1}</span>
+            <div className="step-card"><span className="when">${s.when}</span><h3>${s.title}</h3><p>${s.text}</p></div>
+          </li>`)}</ol>
+        </div>
+      </div>
+    </section>`;
+  }
+
+  function About() {
+    const A = DATA.about, C = DATA.copy.about;
+    const photo = safeUrl(A.photo);
+    return html`<section className="section alt" id="about" aria-labelledby="about-h">
+      <div className="wrap about">
+        <${Rv}>
+          <div className="portrait" data-tilt="9">
+            <span className="ring" aria-hidden="true"></span>
+            <span className="ring r2" aria-hidden="true"></span>
+            <div className="frame">${photo
+              ? html`<img src=${photo} alt=${S.name} width="400" height="500" loading="lazy" decoding="async"/>`
+              : html`<span className="mono" aria-hidden="true">${initials(S.name)}</span>`}</div>
+            <span className="stamp"><${Ic} n="cap"/>${A.stamp}</span>
+          </div>
+        <//>
+        <${Rv} delay=${120}>
+          <span className="eyebrow">${C.eyebrow}</span>
+          <h2 className="h2" id="about-h">${C.title}</h2>
+          <div className="copy">
+            <p className="lead">${S.role}</p>
+            ${A.paragraphs.map((p, i) => html`<p key=${i}>${p}</p>`)}
+            <ul className="checks">${A.highlights.map((h) => html`<li key=${h}><${Ic} n="check"/><span>${h}</span></li>`)}</ul>
+            <ul className="chips" aria-label="Skills">${A.skills.map((s) => html`<li key=${s}>${s}</li>`)}</ul>
+          </div>
+        <//>
+      </div>
+    </section>`;
+  }
+
+  function Results() {
+    const C = DATA.copy.results, St = DATA.stats;
+    return html`<section className="section" id="results" aria-labelledby="results-h">
+      <div className="wrap">
+        <${Head} c=${C} id="results-h"/>
+        <ul className="stats">${St.items.map((s, i) => html`<${Rv} as="li" key=${s.label} className="stat" delay=${i * 80}><b><${Count} to=${s.value} suffix=${s.suffix} decimals=${s.decimals || 0}/></b><span>${s.label}</span><//>`)}</ul>
+        ${St.sample ? html`<p className="sample-note">Sample figures shown. Replace them with your real numbers in the site data block.</p>` : null}
+        <ul className="quotes">${DATA.testimonials.map((t, i) => html`<${Rv} as="li" key=${t.name} delay=${i * 100}>
+          <figure className="quote" data-tilt="5" style=${{ margin: 0 }}>
+            <p>${'“' + t.quote + '”'}</p>
+            <figcaption className="who"><span className="avatar" aria-hidden="true">${initials(t.name)}</span><span><b>${t.name}</b><small>${t.role}${t.sample ? ' · Sample' : ''}</small></span></figcaption>
+          </figure>
+        <//>`)}</ul>
+      </div>
+    </section>`;
+  }
+
+  function Contact({ picked, setPicked }) {
+    const blank = { name: '', email: '', whatsapp: '', message: '', company: '' };
+    const [f, setF] = useState(blank);
+    const [err, setErr] = useState({});
+    const [st, setSt] = useState('idle');
+    const [note, setNote] = useState('');
+    const set = (k) => (e) => setF((p) => ({ ...p, [k]: e.target.value }));
+    const wa = waLink('Hi ' + S.name + ', I have a question about your AI courses.');
+    const mail = safeMail(S.email);
+
+    const validate = () => {
+      const x = {};
+      if (f.name.trim().length < 2) x.name = 'Please enter your name.';
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(f.email.trim())) x.email = 'Enter a valid email address.';
+      if (f.whatsapp && !/^\+?[0-9\s()-]{7,20}$/.test(f.whatsapp.trim())) x.whatsapp = 'Use digits with country code, e.g. +1 202 555 0143.';
+      return x;
+    };
+
+    const submit = async (e) => {
+      e.preventDefault();
+      if (st === 'sending') return;
+      const x = validate();
+      setErr(x);
+      if (Object.keys(x).length) {
+        requestAnimationFrame(() => { const b = document.querySelector('#enq [aria-invalid="true"]'); if (b) b.focus(); });
+        return;
+      }
+      if (f.company) { setSt('success'); return; }
+      if (!navigator.onLine) { setNote('You are offline. Reconnect and try again, or use the WhatsApp button.'); setSt('offline'); return; }
+      if (Date.now() - (parseInt(store.get('enq_ts'), 10) || 0) < 30000) { setNote('Please wait a few seconds before sending again.'); setSt('error'); return; }
+      const course = DATA.courses.find((c) => c.id === picked);
+      const payload = {
+        name: f.name.trim().slice(0, 80),
+        email: f.email.trim().slice(0, 120),
+        whatsapp: f.whatsapp.trim().slice(0, 24),
+        course: course ? course.title : 'General enquiry',
+        message: f.message.trim().slice(0, 600)
+      };
+      const ep = safeUrl(S.formEndpoint);
+      if (!ep) {
+        const text = 'Hi ' + S.name + ', I am ' + payload.name + ' (' + payload.email + '). Course: ' + payload.course + '. ' + payload.message;
+        const link = waLink(text);
+        if (link) window.open(link, '_blank', 'noopener');
+        else if (mail) location.href = 'mailto:' + mail + '?subject=' + encodeURIComponent('Course enquiry: ' + payload.course) + '&body=' + encodeURIComponent(text);
+        setSt('fallback');
+        return;
+      }
+      setSt('sending');
+      setNote('');
+      const ac = new AbortController();
+      const to = setTimeout(() => ac.abort(), 8000);
+      try {
+        const r = await fetch(ep, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(payload), signal: ac.signal });
+        if (!r.ok) throw new Error('status ' + r.status);
+        store.set('enq_ts', String(Date.now()));
+        setSt('success');
+      } catch (er) {
+        setNote(er && er.name === 'AbortError'
+          ? 'The server took too long to answer. Please try again or use WhatsApp.'
+          : 'Something went wrong and your message was not sent. Please try again or use WhatsApp.');
+        setSt('error');
+      } finally {
+        clearTimeout(to);
+      }
+    };
+
+    const again = () => { setF(blank); setErr({}); setNote(''); setSt('idle'); };
+    const done = st === 'success' || st === 'fallback';
+
+    return html`<section className="section alt" id="contact" aria-labelledby="contact-h">
+      <div className="wrap contact">
+        <${Rv}>
+          <span className="eyebrow">${DATA.copy.contact.eyebrow}</span>
+          <h2 className="h2" id="contact-h">${DATA.copy.contact.title}</h2>
+          <p className="lead">${DATA.copy.contact.lead}</p>
+          <div className="direct">
+            ${wa ? html`<a href=${wa} target="_blank" rel="noopener noreferrer"><${Ic} n="chat"/><span>WhatsApp<small>Fastest reply</small></span></a>` : null}
+            ${mail ? html`<a href=${'mailto:' + mail}><${Ic} n="mail"/><span>Email<small>${mail}</small></span></a>` : null}
+          </div>
+        <//>
+        <${Rv} delay=${120}>
+          <div className="form-card" id="enq">
+            ${done
+              ? html`<div className="done" role="status">
+                  <span className="tick"><${Ic} n="check"/></span>
+                  <h3>${st === 'success' ? 'Message sent' : 'Almost done'}</h3>
+                  <p>${st === 'success' ? 'Thank you. I will reply to your email soon.' : 'Finish sending your message in the WhatsApp or email window that just opened.'}</p>
+                  <button type="button" className="btn btn-ghost btn-sm" onClick=${again}>Send another message</button>
+                </div>`
+              : html`<form onSubmit=${submit} noValidate>
+                  <h3>Send a message</h3>
+                  <p>Tell me what you want to learn. Every enquiry gets a personal reply.</p>
+                  <div className="fields">
+                    <div className="two">
+                      <div className="field">
+                        <label htmlFor="f-name">Name</label>
+                        <input id="f-name" name="name" autoComplete="name" maxLength="80" required value=${f.name} onChange=${set('name')} aria-invalid=${err.name ? 'true' : 'false'} aria-describedby=${err.name ? 'e-name' : undefined}/>
+                        ${err.name ? html`<span className="e" id="e-name">${err.name}</span>` : null}
+                      </div>
+                      <div className="field">
+                        <label htmlFor="f-email">Email</label>
+                        <input id="f-email" name="email" type="email" autoComplete="email" maxLength="120" required value=${f.email} onChange=${set('email')} aria-invalid=${err.email ? 'true' : 'false'} aria-describedby=${err.email ? 'e-email' : undefined}/>
+                        ${err.email ? html`<span className="e" id="e-email">${err.email}</span>` : null}
+                      </div>
+                    </div>
+                    <div className="two">
+                      <div className="field">
+                        <label htmlFor="f-wa">WhatsApp <i>(optional)</i></label>
+                        <input id="f-wa" name="whatsapp" type="tel" autoComplete="tel" maxLength="24" placeholder="+1 202 555 0143" value=${f.whatsapp} onChange=${set('whatsapp')} aria-invalid=${err.whatsapp ? 'true' : 'false'} aria-describedby=${err.whatsapp ? 'e-wa' : undefined}/>
+                        ${err.whatsapp ? html`<span className="e" id="e-wa">${err.whatsapp}</span>` : null}
+                      </div>
+                      <div className="field">
+                        <label htmlFor="f-course">Course</label>
+                        <select id="f-course" name="course" value=${picked} onChange=${(e) => setPicked(e.target.value)}>
+                          <option value="">General enquiry</option>
+                          ${DATA.courses.map((c) => html`<option key=${c.id} value=${c.id}>${c.title}</option>`)}
+                        </select>
+                      </div>
+                    </div>
+                    <div className="field">
+                      <label htmlFor="f-msg">Message <i>(optional)</i></label>
+                      <textarea id="f-msg" name="message" maxLength="600" value=${f.message} onChange=${set('message')}></textarea>
+                    </div>
+                    <div className="hp" aria-hidden="true"><label>Company<input name="company" tabIndex="-1" autoComplete="off" value=${f.company} onChange=${set('company')}/></label></div>
+                    <div className="submit-row">
+                      <button type="submit" className="btn btn-primary" disabled=${st === 'sending'}>${st === 'sending' ? html`<${Fragment}><span className="spin"></span>Sending<//>` : html`<${Fragment}>Send message <${Ic} n="arrow" cls="ic-go"/><//>`}</button>
+                      <small>${S.formEndpoint ? 'Your details are used only to reply to you.' : 'Sends through WhatsApp or email.'}</small>
+                    </div>
+                    <p className=${'form-note' + (st === 'error' || st === 'offline' ? ' bad' : '')} role="status" aria-live="polite">${st === 'error' || st === 'offline' ? note : ''}</p>
+                  </div>
+                </form>`}
+          </div>
+        <//>
+      </div>
+    </section>`;
+  }
+
+  function Faq() {
+    const [o, setO] = useState(0);
+    return html`<section className="section" id="faq" aria-labelledby="faq-h">
+      <div className="wrap">
+        <${Head} c=${DATA.copy.faq} id="faq-h"/>
+        <div className="faq">${DATA.faq.map((q, i) => html`<${Rv} key=${q.q} delay=${i * 60}>
+          <div className=${'faq-item' + (o === i ? ' open' : '')}>
+            <h3><button type="button" className="faq-q" id=${'fq' + i} aria-expanded=${o === i} aria-controls=${'fa' + i} onClick=${() => setO(o === i ? -1 : i)}><span>${q.q}</span><${Ic} n="plus"/></button></h3>
+            <div className="faq-a" id=${'fa' + i} role="region" aria-labelledby=${'fq' + i}><div><p>${q.a}</p></div></div>
+          </div>
+        <//>`)}</div>
+      </div>
+    </section>`;
+  }
+
+  function Footer() {
+    const social = DATA.social.map((s) => ({ ...s, href: safeUrl(s.url) })).filter((s) => s.href);
+    return html`<footer className="footer">
+      <div className="wrap">
+        <div className="foot-top">
+          <div>
+            <a className="logo" href="#top"><span className="logo-mark"><${Ic} n="spark"/></span>${S.brand}</a>
+            <p>${S.description}</p>
+          </div>
+          <ul className="foot-links" aria-label="Footer">
+            <li><a href="#courses">Courses</a></li><li><a href="#roadmap">Roadmap</a></li><li><a href="#about">About</a></li><li><a href="#faq">FAQ</a></li><li><a href="#contact">Contact</a></li>
+            ${social.map((s) => html`<li key=${s.label}><a href=${s.href} target="_blank" rel="noopener noreferrer">${s.label}</a></li>`)}
+          </ul>
+        </div>
+        <div className="foot-bot">
+          <p><small>${S.disclaimer}</small></p>
+          <p><small>© ${new Date().getFullYear()} ${S.brand}. All rights reserved.</small></p>
+        </div>
+      </div>
+    </footer>`;
+  }
+
+  function Offline() {
+    const [off, setOff] = useState(!navigator.onLine);
+    useEffect(() => {
+      const a = () => setOff(false), b = () => setOff(true);
+      addEventListener('online', a);
+      addEventListener('offline', b);
+      return () => { removeEventListener('online', a); removeEventListener('offline', b); };
+    }, []);
+    return off ? html`<div className="offline" role="status">You are offline. Forms and checkout need a connection.</div>` : null;
+  }
+
+  function App() {
+    const [picked, setPicked] = useState('');
+    const [openId, setOpenId] = useState(null);
+
+    const enroll = useCallback((id) => {
+      setPicked(id);
+      setOpenId(null);
+      requestAnimationFrame(() => requestAnimationFrame(() => scrollToId('contact')));
+    }, []);
+    const open = useCallback((id) => setOpenId(id), []);
+    const close = useCallback(() => setOpenId(null), []);
+
+    useEffect(() => {
+      document.documentElement.classList.add('js');
+      document.title = S.title;
+      const setMeta = (sel, attr, val) => { const m = document.querySelector(sel); if (m) m.setAttribute(attr, val); };
+      setMeta('meta[name="description"]', 'content', S.description);
+      setMeta('meta[property="og:title"]', 'content', S.title);
+      setMeta('meta[property="og:description"]', 'content', S.description);
+      const canon = safeUrl(S.url);
+      if (canon) setMeta('link[rel="canonical"]', 'href', canon);
+      const ld = {
+        '@context': 'https://schema.org',
+        '@graph': [
+          { '@type': 'Person', name: S.name, jobTitle: S.role, url: canon || undefined, sameAs: DATA.social.map((s) => safeUrl(s.url)).filter(Boolean) },
+          { '@type': 'WebSite', name: S.brand, url: canon || undefined },
+          { '@type': 'FAQPage', mainEntity: DATA.faq.map((q) => ({ '@type': 'Question', name: q.q, acceptedAnswer: { '@type': 'Answer', text: q.a } })) },
+          ...DATA.courses.map((c) => ({
+            '@type': 'Course', name: c.title, description: c.blurb,
+            provider: { '@type': 'Person', name: S.name },
+            offers: { '@type': 'Offer', price: c.price, priceCurrency: S.currency || 'USD', availability: 'https://schema.org/InStock', url: (canon || '') + '#courses' }
+          }))
+        ]
+      };
+      const s = document.createElement('script');
+      s.type = 'application/ld+json';
+      s.textContent = JSON.stringify(ld);
+      document.head.appendChild(s);
+
+      initTilt();
+      initField(document.getElementById('field'));
+
+      let raf = 0;
+      const root = document.documentElement;
+      const f = () => {
+        raf = 0;
+        const m = root.scrollHeight - innerHeight;
+        root.style.setProperty('--sp', m > 0 ? clamp(scrollY / m, 0, 1).toFixed(4) : '0');
+      };
+      const sched = () => { if (!raf) raf = requestAnimationFrame(f); };
+      f();
+      addEventListener('scroll', sched, { passive: true });
+      addEventListener('resize', sched);
+      return () => { removeEventListener('scroll', sched); removeEventListener('resize', sched); s.remove(); };
+    }, []);
+
+    const course = DATA.courses.find((c) => c.id === openId);
+    const wa = waLink('Hi ' + S.name + ', I would like to know more about your AI courses.');
+
+    return html`<${Fragment}>
+      <a className="skip" href="#main">Skip to content</a>
+      <div className="progress" aria-hidden="true"></div>
+      <${Nav}/>
+      <main id="main">
+        <${Hero}/>
+        <${Marquee}/>
+        <${Courses} onOpen=${open} onEnroll=${enroll}/>
+        <${Roadmap}/>
+        <${About}/>
+        <${Results}/>
+        <${Contact} picked=${picked} setPicked=${setPicked}/>
+        <${Faq}/>
+      </main>
+      <${Footer}/>
+      ${wa ? html`<a className="fab" href=${wa} target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"><${Ic} n="chat"/></a>` : null}
+      ${course ? html`<${Modal} c=${course} onClose=${close} onEnroll=${enroll}/>` : null}
+      <${Offline}/>
+    <//>`;
+  }
+
+  window.ReactDOM.createRoot(document.getElementById('root')).render(R.createElement(App));
+})();
+</script>
+</body>
+</html>
